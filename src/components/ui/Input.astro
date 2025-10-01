@@ -1,0 +1,44 @@
+---
+import { cn } from '@/utils/cn';
+import Typography from '@/components/ui/Typography.astro';
+import type { InputProps } from '@/types/ui';
+import { storyblokEditable } from '@storyblok/astro';
+import { makeSafeIDfromUID } from '@/utils/storyblok';
+
+interface Props extends InputProps {}
+
+const {
+  type = 'text',
+  name,
+  placeholder,
+  label,
+  className = '',
+  required = false,
+  minlength = 0,
+  maxlength,
+  _editable,
+  _uid,
+  component,
+}: Props = Astro.props;
+
+const id = makeSafeIDfromUID(_uid);
+
+const inputClasses = cn(
+  'w-full rounded-lg p-4 text-sm font-medium font-sans bg-fill-400 text-text-600 placeholder-text-400 border border-stroke-300 hover:border-stroke-400 focus:outline focus:outline-2',
+  className
+);
+---
+
+<div class="flex flex-col gap-1" {...storyblokEditable({ _editable, _uid, component })}>
+  <label for={id}><Typography variant="label" as="span">{label}</Typography></label>
+  <input
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    class={inputClasses}
+    required={required}
+    id={id}
+    {...minlength ? { minlength } : {}}
+    {...maxlength ? { maxlength } : {}}
+  />
+</div>

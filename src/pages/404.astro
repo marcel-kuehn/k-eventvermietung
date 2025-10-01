@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const content = {
+  head: [
+    {
+      _uid: 'head-404',
+      component: 'Head',
+      title: '404 - Nicht gefunden',
+      description: 'Diese Seite existiert leider nicht.',
+      locale: 'de_DE',
+      robots: 'noindex',
+      siteName: 'kuehn-kr.de',
+      type: 'website',
+    },
+  ],
+  body: [
+    {
+      _uid: 'statusmessage-404',
+      component: 'statusMessage',
+      title: '404 - Nicht gefunden',
+      text: 'Diese Seite existiert leider nicht.',
+      type: 'error',
+      cta: [
+        {
+          _uid: 'cta-1',
+          text: 'Zur Startseite',
+          href: '/',
+          target: '_self',
+          rel: '',
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout head={content.head[0]} body={content.body} />

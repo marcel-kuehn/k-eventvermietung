@@ -1,0 +1,68 @@
+---
+import { cn } from '@/utils/cn';
+import { TYPOGRAPHY_VARIANTS } from '@/constants/typography';
+import type { TypographyProps } from '@/types/ui';
+
+interface Props extends TypographyProps {}
+
+const { variant = 'p1', as = 'p', id, className }: Props = Astro.props;
+
+const finalClass = cn(TYPOGRAPHY_VARIANTS[variant] ?? TYPOGRAPHY_VARIANTS.p1, className);
+---
+
+{
+  as === 'h1' && (
+    <h1 class={finalClass} id={id}>
+      <slot />
+    </h1>
+  )
+}
+{
+  as === 'h2' && (
+    <h2 class={finalClass} id={id}>
+      <slot />
+    </h2>
+  )
+}
+{
+  as === 'h3' && (
+    <h3 class={finalClass} id={id}>
+      <slot />
+    </h3>
+  )
+}
+{
+  as === 'h4' && (
+    <h4 class={finalClass} id={id}>
+      <slot />
+    </h4>
+  )
+}
+{
+  as === 'p' && (
+    <p class={finalClass} id={id}>
+      <slot />
+    </p>
+  )
+}
+{
+  as === 'span' && (
+    <span class={finalClass} id={id}>
+      <slot />
+    </span>
+  )
+}
+{
+  as === 'div' && (
+    <div class={finalClass} id={id}>
+      <slot />
+    </div>
+  )
+}
+{
+  as === 'strong' && (
+    <strong class={finalClass} id={id}>
+      <slot />
+    </strong>
+  )
+}

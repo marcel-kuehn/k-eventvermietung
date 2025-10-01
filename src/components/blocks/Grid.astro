@@ -1,0 +1,31 @@
+---
+import type { GridProps } from '@/types/blocks';
+import BlockRenderer from '@/components/blocks/BlockRenderer.astro';
+import { cn } from '@/utils/cn';
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props extends GridProps {}
+
+const {
+  blocks,
+  desktopGap,
+  mobileGap,
+  _uid,
+  _editable,
+  component,
+  tabletRowSize,
+  desktopRowSize,
+  mobileRowSize,
+}: Props = Astro.props;
+
+const styles = cn(
+  'grid w-full',
+  `sm:gap-${desktopGap}`,
+  `gap-${mobileGap}`,
+  `lg:grid-cols-${desktopRowSize} md:grid-cols-${tabletRowSize} grid-cols-${mobileRowSize}`
+);
+---
+
+<div class={styles} {...storyblokEditable({ _editable, _uid, component })}>
+  <BlockRenderer blocks={blocks} />
+</div>

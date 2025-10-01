@@ -1,0 +1,40 @@
+---
+import { cn } from '@/utils/cn';
+import Typography from '@/components/ui/Typography.astro';
+import type { CheckboxProps } from '@/types/ui';
+import { storyblokEditable } from '@storyblok/astro';
+import { makeSafeIDfromUID } from '@/utils/storyblok';
+
+interface Props extends CheckboxProps {}
+
+const {
+  name,
+  label,
+  required = false,
+  className = '',
+  _editable,
+  _uid,
+  component,
+}: Props = Astro.props;
+
+const checkboxClasses = cn(
+  'w-6 h-6 p-2 border border-stroke-300 accent-primary-400 focus:outline focus:outline-2 transition-colors cursor-pointer',
+  className
+);
+
+const id = makeSafeIDfromUID(_uid);
+---
+
+<div
+  class="flex items-start gap-2 cursor-pointer"
+  {...storyblokEditable({ _editable, _uid, component })}
+>
+  <div>
+    <input type="checkbox" id={id} name={name} required={required} class={checkboxClasses} />
+  </div>
+  <label for={id} class="mt-0.125">
+    <Typography variant="label" as="span" className="cursor-pointer"
+      ><span set:html={label} /></Typography
+    >
+  </label>
+</div>

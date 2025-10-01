@@ -1,0 +1,19 @@
+---
+import Typography from '@/components/ui/Typography.astro';
+import { BUTTON_VARIANTS } from '@/constants/button';
+import type { LinkButtonProps } from '@/types/ui';
+
+interface Props extends LinkButtonProps {}
+
+const { href, target = '_self', rel, variant = 'primary', className }: Props = Astro.props;
+
+const buttonClasses = `${BUTTON_VARIANTS[variant].button} ${className ?? ''}`.trim();
+const textClasses = BUTTON_VARIANTS[variant].text;
+const typographyVariant = BUTTON_VARIANTS[variant].typography;
+---
+
+<a href={href} class={buttonClasses} target={target} rel={rel}>
+  <Typography as="span" variant={typographyVariant} className={textClasses}>
+    <slot />
+  </Typography>
+</a>

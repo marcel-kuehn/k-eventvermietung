@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/montserrat-latin-400-normal.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/montserrat-latin-500-normal.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/montserrat-latin-600-normal.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/montserrat-latin-700-normal.woff2') format('woff2');
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Montserrat';
+
+  --color-fill-100: #0a0b0a;
+  --color-fill-200: #111311;
+  --color-fill-300: #1a1d1a;
+  --color-fill-400: #232823;
+  --color-fill-500: #2b302b;
+  --color-fill-600: #343934;
+
+  --color-fill-100-contrast: #ffffff;
+  --color-fill-200-contrast: #ffffff;
+  --color-fill-300-contrast: #ffffff;
+  --color-fill-400-contrast: #f3f6f3;
+  --color-fill-500-contrast: #e1e6e1;
+  --color-fill-600-contrast: #d2d8d2;
+
+  --color-stroke-100: #161916;
+  --color-stroke-200: #242924;
+  --color-stroke-300: #323732;
+  --color-stroke-400: #404440;
+  --color-stroke-500: #4d524d;
+  --color-stroke-600: #5b605b;
+
+  --color-stroke-100-contrast: #ffffff;
+  --color-stroke-200-contrast: #f3f6f3;
+  --color-stroke-300-contrast: #e3e8e3;
+  --color-stroke-400-contrast: #d4dad4;
+  --color-stroke-500-contrast: #c6cdc6;
+  --color-stroke-600-contrast: #b7beb7;
+
+  /* Neutral Text — heller abgestuft */
+  --color-text-400: #c1c9c1; /* Sekundärer Text, gut lesbar */
+  --color-text-500: #e6ebe6; /* Primärer Text, fast weiß */
+  --color-text-600: #ffffff; /* Starker Kontrast */
+
+  /* Text-Kontraste für helle Flächen */
+  --color-text-400-contrast: #0f130f;
+  --color-text-500-contrast: #0f130f;
+  --color-text-600-contrast: #0a0b0a;
+
+  --color-primary-100: #e9ffb9;
+  --color-primary-200: #d1ff74;
+  --color-primary-300: #b8ff31;
+  --color-primary-400: #a0f400;
+  --color-primary-500: #89db00;
+  --color-primary-600: #6ab800;
+
+  --color-error-500: #ff6b6b;
+}
+
+/*  This forces Tailwind to generate the below classes 
+    This fixes issues where dynamic class names are not recognized by Tailwind 
+    It is needed by the grid component */
+@source inline("gap-{2,4,6,8,10,12}");
+@source inline("sm:gap-{2,4,6,8,10,12}");
+@source inline("grid-cols-1 grid-cols-2 grid-cols-3");
+@source inline("sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3");
+@source inline("md:grid-cols-1 md:grid-cols-2 md:grid-cols-3");
+@source inline("lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3");
+
+html {
+  scroll-behavior: smooth;
+}
+
+.doted-background {
+  background-image:
+    radial-gradient(var(--color-fill-600) 2px, transparent 2px),
+    radial-gradient(var(--color-fill-500) 2px, transparent 2px);
+  background-size: 48px 48px;
+  background-position:
+    0 0,
+    24px 24px;
+  background-color: var(--color-fill-200);
+}
+
+.test-content {
+  box-sizing: border-box;
+  max-height: 0;
+  transition:
+    max-height 400ms ease-out,
+    border 0ms 400ms linear;
+}
+
+details[open] > .test-content {
+  max-height: 800px;
+  transition:
+    max-height 400ms ease-out,
+    border 0ms linear;
+}
+
+.rich-text {
+  width: 100%;
+
+  h1 {
+    @apply text-3xl sm:text-4xl font-bold text-text-600 leading-tight tracking-tight;
+  }
+  h2 {
+    @apply text-2xl sm:text-3xl font-semibold text-text-600 leading-tight tracking-tight;
+  }
+  h3 {
+    @apply text-xl sm:text-2xl font-semibold text-text-600 leading-tight tracking-tight;
+  }
+  h4 {
+    @apply text-base font-semibold text-text-600 leading-relaxed tracking-wider;
+  }
+  p {
+    @apply text-base font-normal text-text-500 leading-relaxed tracking-wider;
+  }
+  a {
+    @apply text-base font-normal leading-relaxed tracking-wider text-primary-500 underline;
+  }
+}

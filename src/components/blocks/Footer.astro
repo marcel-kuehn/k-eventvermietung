@@ -14,7 +14,9 @@ const { links, _uid, _editable, component }: Props = Astro.props;
 ---
 
 <footer
-  class={cn('flex flex-col items-center justify-center px-4 py-6 bg-fill-100 gap-4')}
+  class={cn(
+    'flex border-t border-stroke-200 flex-col items-center justify-center px-4 py-6 bg-fill-300 gap-4'
+  )}
   {...storyblokEditable({ _editable, _uid, component })}
 >
   <ul class={cn('flex gap-4 !p-0')}>

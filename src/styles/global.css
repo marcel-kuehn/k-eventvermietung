@@ -35,51 +35,94 @@
 @theme {
   --font-sans: 'Montserrat';
 
-  --color-fill-100: #0a0b0a;
-  --color-fill-200: #111311;
-  --color-fill-300: #1a1d1a;
-  --color-fill-400: #232823;
-  --color-fill-500: #2b302b;
-  --color-fill-600: #343934;
+  /* Neutral background fills (warm beige/cream) */
+  --color-fill-100: #fdfcfb;
+  --color-fill-200: #faf7f4;
+  --color-fill-300: #f6f0ea;
+  --color-fill-400: #efe5dc;
+  --color-fill-500: #e6d7c9;
+  --color-fill-600: #d5c0ac;
 
-  --color-fill-100-contrast: #ffffff;
-  --color-fill-200-contrast: #ffffff;
-  --color-fill-300-contrast: #ffffff;
-  --color-fill-400-contrast: #f3f6f3;
-  --color-fill-500-contrast: #e1e6e1;
-  --color-fill-600-contrast: #d2d8d2;
+  --color-fill-100-contrast: #1a1a1a;
+  --color-fill-200-contrast: #242424;
+  --color-fill-300-contrast: #2e2e2e;
+  --color-fill-400-contrast: #383838;
+  --color-fill-500-contrast: #434343;
+  --color-fill-600-contrast: #4e4e4e;
 
-  --color-stroke-100: #161916;
-  --color-stroke-200: #242924;
-  --color-stroke-300: #323732;
-  --color-stroke-400: #404440;
-  --color-stroke-500: #4d524d;
-  --color-stroke-600: #5b605b;
+  /* Stroke (borders, dividers, outlines) */
+  --color-stroke-100: #eae7e4;
+  --color-stroke-200: #ddd7d3;
+  --color-stroke-300: #cfc7c2;
+  --color-stroke-400: #b7ada6;
+  --color-stroke-500: #9c8f85;
+  --color-stroke-600: #6e6259;
 
-  --color-stroke-100-contrast: #ffffff;
-  --color-stroke-200-contrast: #f3f6f3;
-  --color-stroke-300-contrast: #e3e8e3;
-  --color-stroke-400-contrast: #d4dad4;
-  --color-stroke-500-contrast: #c6cdc6;
-  --color-stroke-600-contrast: #b7beb7;
+  --color-stroke-100-contrast: #2a2a2a;
+  --color-stroke-200-contrast: #3a3a3a;
+  --color-stroke-300-contrast: #4a4a4a;
+  --color-stroke-400-contrast: #5a5a5a;
+  --color-stroke-500-contrast: #6b6b6b;
+  --color-stroke-600-contrast: #7c7c7c;
 
-  /* Neutral Text — heller abgestuft */
-  --color-text-400: #c1c9c1; /* Sekundärer Text, gut lesbar */
-  --color-text-500: #e6ebe6; /* Primärer Text, fast weiß */
-  --color-text-600: #ffffff; /* Starker Kontrast */
+  /* Text */
+  --color-text-400: #6b625a;
+  --color-text-500: #2f2822;
+  --color-text-600: #1e1914;
 
-  /* Text-Kontraste für helle Flächen */
-  --color-text-400-contrast: #0f130f;
-  --color-text-500-contrast: #0f130f;
-  --color-text-600-contrast: #0a0b0a;
+  --color-text-400-contrast: #dcd7d2;
+  --color-text-500-contrast: #e9e5e1;
+  --color-text-600-contrast: #fdfcfb;
 
-  --color-primary-100: #e9ffb9;
-  --color-primary-200: #d1ff74;
-  --color-primary-300: #b8ff31;
-  --color-primary-400: #a0f400;
-  --color-primary-500: #89db00;
-  --color-primary-600: #6ab800;
+  /* Primary (orange) */
+  --color-primary-100: #ffe8d6;
+  --color-primary-200: #ffcdad;
+  --color-primary-300: #f9a76e;
+  --color-primary-400: #f08b42;
+  --color-primary-500: #d46f28;
+  --color-primary-600: #a9521a;
 
+  /* Accent 1 (golden yellow) */
+  --color-accent-1-100: #fff6da;
+  --color-accent-1-200: #ffeab0;
+  --color-accent-1-300: #f8da82;
+  --color-accent-1-400: #f1cc5b;
+  --color-accent-1-500: #d1aa36;
+  --color-accent-1-600: #9c7d1f;
+
+  /* Accent 2 (red-orange) */
+  --color-accent-2-100: #ffe0d6;
+  --color-accent-2-200: #ffb8a3;
+  --color-accent-2-300: #f57a50;
+  --color-accent-2-400: #d83d0f;
+  --color-accent-2-500: #ad2a08;
+  --color-accent-2-600: #7a1b05;
+
+  /* Accent 3 (purple) */
+  --color-accent-3-100: #fbe6fb;
+  --color-accent-3-200: #f2bdf5;
+  --color-accent-3-300: #db84dd;
+  --color-accent-3-400: #c74ecc;
+  --color-accent-3-500: #9d36a4;
+  --color-accent-3-600: #6f2476;
+
+  /* Accent 4 (pink) */
+  --color-accent-4-100: #ffe0ef;
+  --color-accent-4-200: #fcb8d7;
+  --color-accent-4-300: #f283bb;
+  --color-accent-4-400: #eb489a;
+  --color-accent-4-500: #c62d7b;
+  --color-accent-4-600: #8c1f55;
+
+  /* Accent 5 (green) */
+  --color-accent-5-100: #e6f6e6;
+  --color-accent-5-200: #c0e6c0;
+  --color-accent-5-300: #a0d6a0;
+  --color-accent-5-400: #86c586;
+  --color-accent-5-500: #5ea75e;
+  --color-accent-5-600: #407b40;
+
+  /* Error */
   --color-error-500: #ff6b6b;
 }
 

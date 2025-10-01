@@ -140,32 +140,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.doted-background {
-  background-image:
-    radial-gradient(var(--color-fill-600) 2px, transparent 2px),
-    radial-gradient(var(--color-fill-500) 2px, transparent 2px);
-  background-size: 48px 48px;
-  background-position:
-    0 0,
-    24px 24px;
-  background-color: var(--color-fill-200);
-}
-
-.test-content {
-  box-sizing: border-box;
-  max-height: 0;
-  transition:
-    max-height 400ms ease-out,
-    border 0ms 400ms linear;
-}
-
-details[open] > .test-content {
-  max-height: 800px;
-  transition:
-    max-height 400ms ease-out,
-    border 0ms linear;
-}
-
 .rich-text {
   width: 100%;
 

@@ -1,0 +1,64 @@
+---
+import { richTextResolver } from '@storyblok/richtext';
+import type { BlockRendererProps } from '@/types/blocks';
+
+import Section from '@/components/blocks/Section.astro';
+import Grid from '@/components/blocks/Grid.astro';
+import Form from '@/components/blocks/Form.astro';
+import HiddenValue from '@/components/ui/HiddenValue.astro';
+import Input from '@/components/ui/Input.astro';
+import Textarea from '@/components/ui/Textarea.astro';
+import Divider from '@/components/ui/Divider.astro';
+import Checkbox from '@/components/ui/Checkbox.astro';
+import Footer from '@/components/blocks/Footer.astro';
+import RichText from '@/components/blocks/RichText.astro';
+
+const { render } = richTextResolver();
+
+interface Props extends BlockRendererProps {}
+const { blocks }: Props = Astro.props;
+
+const COMPONENTS: Record<string, any> = {
+  section: Section,
+  grid: Grid,
+  form: Form,
+  hiddenValue: HiddenValue,
+  input: Input,
+  textarea: Textarea,
+  divider: Divider,
+  checkbox: Checkbox,
+  footer: Footer,
+  richText: RichText,
+};
+
+const transformProps = (
+  component: string,
+  props: Record<string, any>,
+  index: number,
+  total: number
+) => {
+  switch (component) {
+    case 'aboutMe':
+      return { ...props, richText: render(props.richText) as string };
+    case 'richText':
+      return { ...props, content: render(props.content) as string };
+    case 'timelineItem':
+      return { ...props, index, isLast: index === total - 1 };
+    case 'input':
+      return { ...props, minlength: props.minLength, maxlength: props.maxLength };
+    case 'textarea':
+      return { ...props, minlength: props.minLength, maxlength: props.maxLength };
+    default:
+      return props;
+  }
+};
+---
+
+{
+  (blocks ?? []).map((block: any, index) => {
+    const { component, ...props } = block;
+    const Comp = COMPONENTS[component];
+    if (!Comp) return null;
+    return <Comp {...transformProps(component, props, index, blocks.length)} />;
+  })
+}

@@ -1,0 +1,41 @@
+---
+import { cn } from '@/utils/cn';
+import type { CardProps } from '@/types/ui';
+
+interface Props extends CardProps {}
+
+const { className = '', variant = 'default', as = 'article' }: Props = Astro.props;
+
+const variants = {
+  default: 'bg-fill-300 border-stroke-300',
+  'default-contrast': 'bg-fill-200-contrast border-stroke-300-contrast',
+};
+
+const classes = cn(
+  'flex-1 flex flex-col gap-4 p-4 sm:p-6 rounded-xl border shadow',
+  variants[variant],
+  className
+);
+---
+
+{
+  as === 'article' && (
+    <article class={classes}>
+      <slot />
+    </article>
+  )
+}
+{
+  as === 'div' && (
+    <div class={classes}>
+      <slot />
+    </div>
+  )
+}
+{
+  as === 'section' && (
+    <section class={classes}>
+      <slot />
+    </section>
+  )
+}

@@ -1,0 +1,20 @@
+---
+import { cn } from '@/utils/cn';
+import Typography from '@/components/ui/Typography.astro';
+import { BUTTON_VARIANTS } from '@/constants/button';
+import type { ButtonProps } from '@/types/ui';
+
+interface Props extends ButtonProps {}
+
+const { variant = 'primary', type, className }: Props = Astro.props;
+
+const buttonClasses = cn(BUTTON_VARIANTS[variant].button, className);
+const textClasses = cn(BUTTON_VARIANTS[variant].text);
+const typographyVariant = BUTTON_VARIANTS[variant].typography;
+---
+
+<button type={type} class={buttonClasses}>
+  <Typography as="span" variant={typographyVariant} className={textClasses}>
+    <slot />
+  </Typography>
+</button>

@@ -1,0 +1,74 @@
+---
+import BlockRenderer from '@/components/blocks/BlockRenderer.astro';
+import '@/styles/global.css';
+import type { Block, Head } from '@/types/blocks';
+
+interface Props {
+  head: Head;
+  body: Block[];
+  navigation?: Block[];
+  footer?: Block[];
+}
+
+const { head, body, navigation, footer }: Props = Astro.props;
+---
+
+<!doctype html>
+<html lang={head.locale.split('_')[0]} dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{head.title}</title>
+
+    <!-- ADD CANONICAL URL -->
+    <meta name="description" content={head.description} />
+    <meta name="robots" content={head.robots} />
+
+    <meta property="og:type" content={head.type} />
+    <!-- <meta property="og:url" content={} /> -->
+    <meta property="og:title" content={head.title} />
+    {head.previewImage && <meta property="og:image" content={head.previewImage.filename} />}
+    <meta property="og:description" content={head.description} />
+    <meta property="og:site_name" content={head.siteName} />
+    <meta property="og:locale" content={head.locale} />
+
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="text-600 min-h-screen flex flex-col bg-fill-200">
+    {navigation && <BlockRenderer blocks={navigation} />}
+
+    <main class="flex-1">
+      <BlockRenderer blocks={body} />
+    </main>
+
+    {footer && <BlockRenderer blocks={footer} />}
+  </body>
+</html>

@@ -1,0 +1,52 @@
+---
+import Typography from '@/components/ui/Typography.astro';
+import type { SectionProps } from '@/types/blocks';
+import BlockRenderer from '@/components/blocks/BlockRenderer.astro';
+import { cn } from '@/utils/cn';
+import { storyblokEditable } from '@storyblok/astro';
+import { makeSafeIDfromUID } from '@/utils/storyblok';
+
+interface Props extends SectionProps {}
+
+const { title, text, blocks, layout, _uid, _editable, component, id: _id }: Props = Astro.props;
+const id = !!_id ? _id : makeSafeIDfromUID(_uid);
+const labelId = `${id}-label`;
+
+const SECTION_LAYOUT_STYLES = {
+  tight: 'max-w-4xl',
+  default: 'max-w-7xl',
+};
+
+const SECTION_STYLES = cn(
+  SECTION_LAYOUT_STYLES[layout],
+  'w-full flex flex-col items-center gap-8 sm:gap-12 mx-auto'
+);
+---
+
+<section
+  class="py-12 px-4 sm:py-24 sm:px-8"
+  id={id}
+  {...title ? { 'aria-labelledby': labelId } : {}}
+  {...storyblokEditable({ _editable, _uid, component })}
+>
+  <div class={SECTION_STYLES}>
+    <div class="flex flex-col gap-2">
+      {
+        title && (
+          <Typography as="h2" variant="h2" className="w-full text-center" id={labelId}>
+            {title}
+          </Typography>
+        )
+      }
+      {
+        text && (
+          <Typography as="p" variant="p1" className="w-full text-center">
+            {text}
+          </Typography>
+        )
+      }
+    </div>
+
+    <BlockRenderer blocks={blocks} />
+  </div>
+</section>

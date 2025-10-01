@@ -1,0 +1,15 @@
+---
+import type { HiddenValueProps } from '@/types/ui';
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props extends HiddenValueProps {}
+
+const { name, value, _editable, _uid, component }: Props = Astro.props;
+---
+
+<input
+  type="hidden"
+  name={name}
+  value={value}
+  {...storyblokEditable({ _editable, _uid, component })}
+/>

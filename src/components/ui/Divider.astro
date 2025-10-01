@@ -1,0 +1,14 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import { type DividerProps } from '@/types/ui';
+import clsx from 'clsx';
+
+interface Props extends DividerProps {}
+
+const { _editable, _uid, component, className }: Props = Astro.props;
+---
+
+<hr
+  class={clsx('border-t border-stroke-300 mt-2', className)}
+  {...storyblokEditable({ _editable, _uid, component })}
+/>

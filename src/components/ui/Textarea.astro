@@ -1,0 +1,44 @@
+---
+import { cn } from '@/utils/cn';
+import Typography from '@/components/ui/Typography.astro';
+import type { TextareaProps } from '@/types/ui';
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props extends TextareaProps {}
+
+const {
+  label,
+  id = 'textarea',
+  name,
+  placeholder = '',
+  rows = 4,
+  className = '',
+  minlength = 0,
+  maxlength,
+  required = false,
+  _editable,
+  _uid,
+  component,
+}: Props = Astro.props;
+
+const textareaClasses = cn(
+  'w-full rounded-lg p-4 text-sm font-medium font-sans bg-fill-400 text-text-600 placeholder-text-400 border border-stroke-300 hover:border-stroke-400 focus:outline focus:outline-2 transition-colors',
+  className
+);
+---
+
+<div class="flex flex-col gap-1 flex-1" {...storyblokEditable({ _editable, _uid, component })}>
+  <label for={id}>
+    <Typography variant="label" as="span">{label}</Typography>
+  </label>
+
+  <textarea
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    class={textareaClasses}
+    rows={rows}
+    {...minlength ? { minlength } : {}}
+    {...maxlength ? { maxlength } : {}}
+    required={required}></textarea>
+</div>

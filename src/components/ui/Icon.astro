@@ -1,0 +1,15 @@
+---
+import { icons } from '@lucide/astro';
+import type { IconProps } from '@/types/ui';
+
+interface Props extends IconProps {}
+const { name, size = '1rem', class: className = '' }: Props = Astro.props;
+
+const SelectedIcon: any =
+  (icons as any)[name] ??
+  (() => {
+    throw new Error(`Icon "${name}" not found.`);
+  });
+---
+
+<SelectedIcon size={size} class={className} aria-hidden={true} />

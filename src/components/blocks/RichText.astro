@@ -1,0 +1,10 @@
+---
+import type { RichTextProps } from '@/types/blocks';
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props extends RichTextProps {}
+
+const { content, _editable, _uid, component }: Props = Astro.props;
+---
+
+<div set:html={content} {...storyblokEditable({ _editable, _uid, component })} class="rich-text" />

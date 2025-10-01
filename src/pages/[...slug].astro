@@ -1,0 +1,39 @@
+---
+import { useStoryblok } from '@/hooks/useStoryblok';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getVersion, transformStoryToStaticPath } from '@/utils/storyblok';
+
+export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
+  const { getStories } = useStoryblok(Astro);
+  const stories = await getStories();
+
+  return [...stories.map((story) => transformStoryToStaticPath(story)), { params: { slug: '/' } }];
+}
+export const prerender = getVersion() === 'published';
+
+const { slug } = Astro.params;
+const { getStoryContentBySlug, getSiteConfig } = useStoryblok(Astro);
+
+let content;
+let siteConfig;
+try {
+  content = await getStoryContentBySlug(!slug ? '/home' : slug);
+  siteConfig = await getSiteConfig();
+} catch (e) {
+  Astro.redirect('/404');
+  return;
+}
+
+// The default footer is configured globally in the site config
+// so it can be reused across multiple pages
+const storyUsesDefaultFooter =
+  content.footer[0] && content.footer[0].component === 'default-footer';
+const footer = storyUsesDefaultFooter ? siteConfig.footer : content.footer;
+---
+
+<BaseLayout
+  head={content.head[0]}
+  navigation={content.navigation}
+  body={content.body}
+  footer={footer}
+/>

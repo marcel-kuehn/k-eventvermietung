@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://k-eventvermietung-production.vercel.app/sitemap-index.xml
